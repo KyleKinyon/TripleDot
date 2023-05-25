@@ -1,2 +1,1 @@
-# TripleDot
-Triple Dot boot camp
+# Triple Dot Boot Camp
