@@ -40,7 +40,17 @@ def parseTxtFile(fileName):
 
     # Open the .txt file
     with open(fileName, 'r') as file:
-        # Iterate over each line in the file
+        # Loop over each character on each line and add it to the 2D array until the new line character 
+        # is reached.
+        # Example:
+        # ABCD
+        # EFGH
+        # IJKL
+        # MNOP
+        # -> [[A,B,C,D],
+        #     [E,F,G,H],
+        #     [I,J,K,L],
+        #     [M,N,O,P]]
         for line in file:
             # Create an empty list for each row in the 2D array
             row = []
@@ -51,26 +61,12 @@ def parseTxtFile(fileName):
                     row.append(char)
             # Append the row list to the 2D array
             output.append(row)
-            
+    # Print the resulting 2D array   
     print(output)
     return output
-# Print the resulting 2D array
 
-    # Loop over each character on each line and add it to the 2D array until the new line character 
-    # is reached.
-    # Example:
-    # ABCD
-    # EFGH
-    # IJKL
-    # MNOP
-    # -> [[A,B,C,D],
-    #     [E,F,G,H],
-    #     [I,J,K,L],
-    #     [M,N,O,P]]
-    
-    for x in output:
-        print(x)
-    return output
+
+
 
 # Parses through .json file and adds each boggle board to an array of boggle boards
 # Input: .json file containing an array of 1 or more boggle boards (assume no errors in .json file)
