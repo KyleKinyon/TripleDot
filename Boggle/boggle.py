@@ -32,12 +32,29 @@ def checkInput():
 # Input: .txt file (assume no errors in .txt file)
 # Output: 2D char array
 def parseTxtFile(fileName):
-    output = [["A", "B", "C", "D"],
+    example = [["A", "B", "C", "D"],
               ["E", "F", "G", "H"],
               ["I", "J", "K", "L"],
               ["M", "N", "O", "P"]]
+    output = []
 
     # Open the .txt file
+    with open(fileName, 'r') as file:
+        # Iterate over each line in the file
+        for line in file:
+            # Create an empty list for each row in the 2D array
+            row = []
+            # Iterate over each character in the line
+            for char in line:
+                # Append the character to the row list
+                if char != '\n':
+                    row.append(char)
+            # Append the row list to the 2D array
+            output.append(row)
+            
+    print(output)
+    return output
+# Print the resulting 2D array
 
     # Loop over each character on each line and add it to the 2D array until the new line character 
     # is reached.
@@ -50,7 +67,9 @@ def parseTxtFile(fileName):
     #     [E,F,G,H],
     #     [I,J,K,L],
     #     [M,N,O,P]]
-
+    
+    for x in output:
+        print(x)
     return output
 
 # Parses through .json file and adds each boggle board to an array of boggle boards
