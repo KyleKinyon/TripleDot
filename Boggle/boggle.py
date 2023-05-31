@@ -6,7 +6,6 @@ import sys
 #   - '.json' if a .json test case file is provided
 #   - '.txt' if a .txt test case file is provided
 #   - 0 if there is an error
-
 def checkInput():
     if len(sys.argv) != 3:
         print("Please provide a dictionary and test case")
@@ -82,9 +81,9 @@ def parseJsonFile(fileName):
 # Output: None
 def searchBoard():
 
-    # Open .txt file
+    # Open dictionary file
 
-    # Get next word
+    # Get next word in dictionary
 
     # Check if word exists in board using DFS
 
@@ -98,9 +97,9 @@ def searchBoard():
 # Output: None
 def optimizedBoardSearch():
 
-    # Open .txt file
+    # Open dictionary file
 
-    # Get next word
+    # Get next word in dictionary (skip any if possible)
 
     # Check if word exists in board using DFS
     
@@ -114,11 +113,11 @@ def DFS():
     return
 
 def main():
-    # # Check input for dictionary and test case (in that order)
-    # # If no files are provided, return
-    inputType = checkInput()
     boards = []
 
+    # Check input for dictionary and test case (in that order)
+    # If no files are provided, return
+    inputType = checkInput()
     if inputType == 0:
         return
     elif inputType == "json":
@@ -129,6 +128,7 @@ def main():
         print("Undefined error in main")
         return
 
+    # Search board(s) for all words in the provided dictionary 
     for board in boards:
         searchBoard()
 
