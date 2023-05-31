@@ -1,0 +1,16 @@
+BOARD 1
+--------------------------
+Number of words founds: 1
+
+Words found:
+tent
+--------------------------
+
+BOARD 2
+--------------------------
+Number of words founds: 2
+
+Words found:
+chalk
+prize
+--------------------------

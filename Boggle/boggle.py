@@ -36,7 +36,7 @@ def parseTxtFile(fileName):
 # Prints the number of words found in each boggle board one a new line with the board's number
 # Also prints the words found if the -showList argument is provided
 # Input: .json file containing an array of 1 or more boggle boards (assume no errors in .json file)
-# Output: Null
+# Output: Returns array of 2D char arrays
 def parseJsonFile(fileName):
     output = []
 
