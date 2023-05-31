@@ -65,9 +65,6 @@ def parseTxtFile(fileName):
     print(output)
     return output
 
-
-
-
 # Parses through .json file and adds each boggle board to an array of boggle boards
 # Input: .json file containing an array of 1 or more boggle boards (assume no errors in .json file)
 # Output: Returns array of 2D char arrays
@@ -88,20 +85,21 @@ def parseJsonFile(fileName):
 
     return output
 
-# Brute force DFS
 # Loop through each word in the provided dictionary and perform DFS to see if any of the words exist
 # Prints the number of words found in the boggle board on a new line
-# Also prints the words found if the -showList argument is provided
+# TODO: Also prints the words found if the -showList argument is provided
 # Input: 2D array of chars, .txt file of dictionary, boolean (for showList)
 # Output: None
-def searchBoard():
+def searchBoard(board, dictionary, showList):
 
     # Open dictionary file
-
-    # Get next word in dictionary
-
-    # Check if word exists in board using DFS
-
+    with open(dictionary, 'r') as file:
+        # Get next word in dictionary 
+        for line in file:
+            # Remove new line character
+            word = line.rstrip()
+            # Check if word exists in board using DFS
+            wordSearch(board, word)
     return
 
 # Loop through each word in the provided dictionary and perform DFS to see if any of the words exist.
@@ -122,8 +120,54 @@ def optimizedBoardSearch():
 
     return
 
-# todo
-def DFS():
+def wordSearch(board, word):
+    wordIndex = 0
+    visited = [[]]
+
+    for x in range(len(board[0])):
+        for y in range(len(board)):
+            wordSearchHelper(board, word, wordIndex, x, y, visited)
+
+# TODO
+def wordSearchHelper(board, word, wordIndex, row, column, visited):
+    # Mark node as visited
+    # visited[row][column] = True
+
+    # If letter does not match, stop searching
+    if word[wordIndex].lower() != board[row][column].lower():
+        return
+    # If we've reached the end of the word, we have a match
+    if wordIndex+1 == len(word):
+        print(word)
+        return
+    
+    # Check each neighbor
+    if row < len(board[0])-1:
+        if column < len(board)-1:
+            # Check bottom-right
+            wordSearchHelper(board, word, wordIndex+1, row+1, column+1, visited)
+        elif column > 0:
+            # Check top-right
+            wordSearchHelper(board, word, wordIndex+1, row+1, column-1, visited)
+        else:
+            # Check right
+            wordSearchHelper(board, word, wordIndex+1, row+1, column, visited)
+    if row > 0:
+        if column < len(board)-1:
+            # Check bottom-left
+            wordSearchHelper(board, word, wordIndex+1, row-1, column+1, visited)
+        elif column > 0:
+            # Check top-left
+            wordSearchHelper(board, word, wordIndex+1, row-1, column-1, visited)
+        else:
+            # Check left
+            wordSearchHelper(board, word, wordIndex+1, row-1, column, visited)
+    # Check bottom
+    if column < len(board)-1:
+        wordSearchHelper(board, word, wordIndex+1, row, column+1, visited)
+    # Check top
+    if column > 0:
+        wordSearchHelper(board, word, wordIndex+1, row, column-1, visited)
 
     return
 
@@ -145,9 +189,19 @@ def main():
 
     # Search board(s) for all words in the provided dictionary 
     for board in boards:
-        searchBoard()
+        searchBoard(board, sys.argv[1], False)
 
     return
+
+def wordSearchTester():
+    board =  [["A", "B", "C", "D"],
+              ["E", "F", "G", "H"],
+              ["I", "J", "K", "L"],
+              ["M", "N", "O", "P"]]
+    word = "ABGLO"
+    visited = [[False]*len(board[0]) for i in range(len(board))]
+    wordSearch(board, word, 0, 0, 0, visited)
+
 
 if __name__ == "__main__":
     main()
