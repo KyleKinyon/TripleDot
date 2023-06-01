@@ -1,6 +1,6 @@
 import sys
 import time
-
+import json
 # Checks to see if there is a dictionary and test case present on execution
 # Input: None
 # Output:
@@ -84,6 +84,7 @@ def parseTxtFile(fileName):
 # Output: Returns array of 2D char arrays
 def parseJsonFile(fileName):
     output = []
+    test = []
     output.append([ ["A", "B", "C", "D"],
                     ["E", "F", "G", "H"],
                     ["I", "J", "K", "L"],
@@ -94,10 +95,37 @@ def parseJsonFile(fileName):
                     ["C", "D", "E", "F"]])
 
     # Open the .json file
+    f = open(fileName)
+  
+    # returns JSON object as 
+    # a dictionary
+    data = json.load(f)
+    
+    # Iterating through the json
+    # list
+    #for row in data:
+    #    for column in row:
+
+    print('length is', len(data))
+    for x in range(len(data)):
+        temp = []
+        row = []
+        for index, char in enumerate(data[x]):
+            if index % 4 == 0 and index != 0:
+                temp.append(row)
+                row = []
+            row.append(char)
+        temp.append(row)
+        test.append(temp)
+
+    # Closing file
+    print(test)
+    print(output)
+    f.close()
 
     # Similar to instructions in parseTxtFile() but ignore json syntax
 
-    return output
+    return test
 
 # Loop through each word in the provided dictionary and perform DFS to see if any of the words exist
 # Prints the number of words found in the boggle board on a new line
