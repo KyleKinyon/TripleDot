@@ -200,22 +200,20 @@ def wordSearchHelper(board, word, wordIndex, row, column):
         if column < len(board)-1:
             # Check bottom-right
             wordSearchHelper(board, word, wordIndex+1, row+1, column+1)
-        elif column > 0:
+        if column > 0:
             # Check top-right
             wordSearchHelper(board, word, wordIndex+1, row+1, column-1)
-        else:
-            # Check right
-            wordSearchHelper(board, word, wordIndex+1, row+1, column)
+        # Check right
+        wordSearchHelper(board, word, wordIndex+1, row+1, column)
     if row > 0:
         if column < len(board)-1:
             # Check bottom-left
             wordSearchHelper(board, word, wordIndex+1, row-1, column+1)
-        elif column > 0:
+        if column > 0:
             # Check top-left
             wordSearchHelper(board, word, wordIndex+1, row-1, column-1)
-        else:
-            # Check left
-            wordSearchHelper(board, word, wordIndex+1, row-1, column)
+        # Check left
+        wordSearchHelper(board, word, wordIndex+1, row-1, column)
     # Check bottom
     if column < len(board)-1:
         wordSearchHelper(board, word, wordIndex+1, row, column+1)
