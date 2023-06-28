@@ -1,0 +1,26 @@
+body {
+    background-color: powderblue;
+}
+
+h1 {
+    color: blue;
+    font-size: 300%
+}
+
+p {
+    color: black;
+    font-size: 150%
+}
+
+form {
+    color: black;
+    font-size: 150%
+}
+
+button {
+    font-size: 150%
+}
+
+input {
+    font-size: 100%
+}
